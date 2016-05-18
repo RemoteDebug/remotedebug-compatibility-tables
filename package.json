@@ -1,5 +1,5 @@
 {
-  "name": "remotedebug-protocol-comparison",
+  "name": "remotedebug-protocol-compatibility-viewer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Kenneth Auchenberg <kenneth@auchenberg.dk>",
+  "license": "MIT",
   "dependencies": {
     "ejs-locals": "^1.0.2",
     "express": "^4.13.4",
