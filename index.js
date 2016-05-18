@@ -1,8 +1,10 @@
 var express = require('express');
 var _ = require('lodash');
 
-var blink = require('./protocols/blink/protocol.json')
-var edge = require('./protocols/edge/protocol.json')
+var protocols = {
+  blink: require('./protocols/blink/protocol.json'),
+  edge: require('./protocols/edge/protocol.json')
+}
 
 var app = express();
 app.engine('ejs', require('ejs-locals'));
@@ -103,7 +105,7 @@ function getDomains() {
       runtimes: [
         {
           name: 'blink',
-          protocol: getBlinkDomain(domainName),
+          protocol: getDomainForRuntime('blink', domainName),
         },
         {
           name: 'webkit',
@@ -111,7 +113,7 @@ function getDomains() {
         },
         {
           name: 'edge',
-          protocol: getEdgeDomain(domainName)
+          protocol: getDomainForRuntime('edge', domainName)
         }        
       ]      
     } 
@@ -119,35 +121,9 @@ function getDomains() {
 }
 
 function getDomainByName(name) {
-   var domain = getDomains().filter(i => i.name === name)
-
-  if(domain.length) {
-    return domain[0]
-  }
-  
-  return null
+   return _.find(getDomains(), i => i.name === name)
 }
 
-function getBlinkDomain(name) {
-
-  var domain = blink.domains.filter(function(item) {
-    return item.domain === name
-  })
-  
-  if(domain.length) {
-    return domain[0]
-  }
-  
-}
-
-function getEdgeDomain(name) {
-
-  var domain = edge.domains.filter(function(item) {
-    return item.domain === name
-  })
-  
-  if(domain.length) {
-    return domain[0]
-  }
-  
+function getDomainForRuntime(runtime, name) {
+  return _.find(protocols[runtime].domains, item => item.domain === name)
 }
