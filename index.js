@@ -1,7 +1,7 @@
 var express = require('express');
 var _ = require('lodash');
 
-var blink = require('./blink/protocol.json')
+var blink = require('./protocols/blink/protocol.json')
 
 var app = express();
 app.engine('ejs', require('ejs-locals'));
@@ -104,7 +104,7 @@ function getDomains() {
         },
         {
           name: 'webkit',
-          protocol: require('./webkit/' + domainName+ '.json')
+          protocol: require('./protocols/webkit/' + domainName+ '.json')
         }
       ]      
     } 
