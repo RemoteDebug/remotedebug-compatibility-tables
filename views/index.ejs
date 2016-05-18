@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+    <h4>Protocol domains</h4>
+      <ul class="list-group">
+      <% domains.forEach(function(domain) { %>
+        <li class="list-group-item"><a href="/<%= domain.name %>"><%= domain.name %></a></li>
+      <% }) %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

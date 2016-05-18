@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+    
+      <h4><%= domain.name %></h4>
+      
+      <h5>Commands</h5>
+        <%- partial('table', { runtimes: domain.runtimes, items: commands}) %>
+      <h5>Events</h5>
+        <%- partial('table', { runtimes: domain.runtimes, items: events}) %>
+      <h5>Types</h5>
+      <%- partial('table', { runtimes: domain.runtimes, items: types}) %>
+      
+    </div>
+  </div>
+</div>
+
+

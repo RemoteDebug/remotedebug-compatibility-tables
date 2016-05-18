@@ -1,0 +1,23 @@
+<table class="table  table-condensed table-hover">
+  <thead>
+    <tr>
+    <% runtimes.forEach(function(runtime) { %>
+      <td><h4><%= runtime.name %></h4></td>      
+    <% }) %>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.forEach(function(cPair) { %>
+      <tr class="<%= cPair.hasParity ? 'parity' : '' %>">
+      <% domain.runtimes.forEach(function(runtime, index) { %>
+        <% if(cPair.pair[index]) { %>
+          <td><%= cPair.pair[index].name %></td>
+        <% } else { %>
+          <td class="empty"></td>
+        <% } %>    
+      <% }) %>    
+      </tr>      
+    <% }) %>
+    
+  </tbody>
+</table>
