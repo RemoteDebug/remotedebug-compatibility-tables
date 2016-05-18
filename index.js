@@ -2,6 +2,7 @@ var express = require('express');
 var _ = require('lodash');
 
 var blink = require('./protocols/blink/protocol.json')
+var edge = require('./protocols/edge/protocol.json')
 
 var app = express();
 app.engine('ejs', require('ejs-locals'));
@@ -107,7 +108,11 @@ function getDomains() {
         {
           name: 'webkit',
           protocol: require('./protocols/webkit/' + domainName+ '.json')
-        }
+        },
+        {
+          name: 'edge',
+          protocol: getEdgeDomain(domainName)
+        }        
       ]      
     } 
   })
@@ -126,6 +131,18 @@ function getDomainByName(name) {
 function getBlinkDomain(name) {
 
   var domain = blink.domains.filter(function(item) {
+    return item.domain === name
+  })
+  
+  if(domain.length) {
+    return domain[0]
+  }
+  
+}
+
+function getEdgeDomain(name) {
+
+  var domain = edge.domains.filter(function(item) {
     return item.domain === name
   })
   
