@@ -46,25 +46,27 @@ function generateCompatibilityPairs(domain, type, propertyKey) {
   
   var commands = new Map()
   
-  runtimes.forEach(function(runtime, index) { 
-    runtime.protocol[type]
-      .sort(function(a, b) {
-        var x = a[propertyKey]; var y = b[propertyKey]
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0))
-      })
-      .forEach(function(command) {
-        var cItem = {
-          runtime: runtime.name,
-          command: command
-        }
-        
-        if(commands.has(command[propertyKey])) {
-          var entry = commands.get(command[propertyKey])
-          entry.push(cItem)
-        } else {
-          commands.set(command[propertyKey], [cItem])
-        }
-      })    
+  runtimes.forEach(function(runtime, index) {     
+    if(runtime.protocol) {
+      runtime.protocol[type]
+        .sort(function(a, b) {
+          var x = a[propertyKey]; var y = b[propertyKey]
+          return ((x < y) ? -1 : ((x > y) ? 1 : 0))
+        })
+        .forEach(function(command) {
+          var cItem = {
+            runtime: runtime.name,
+            command: command
+          }
+          
+          if(commands.has(command[propertyKey])) {
+            var entry = commands.get(command[propertyKey])
+            entry.push(cItem)
+          } else {
+            commands.set(command[propertyKey], [cItem])
+          }
+        }) 
+      }   
   })
   
   var commandPairs = []
