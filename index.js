@@ -54,7 +54,7 @@ function generateCompatibilityPairs(domain, type, propertyKey) {
   var commands = new Map()
   
   runtimes.forEach(function(runtime, index) {     
-    if(runtime.protocol) {
+    if(runtime.protocol && runtime.protocol[type]) {
       runtime.protocol[type]
         .sort(function(a, b) {
           var x = a[propertyKey]; var y = b[propertyKey]
