@@ -3,7 +3,11 @@ var _ = require('lodash');
 
 var protocols = {
   blink: require('./protocols/blink/protocol.json'),
-  edge: require('./protocols/edge/protocol.json')
+  edge: require('./protocols/edge/protocol.json'),
+  ios7: require('./protocols/webkit/iOS-7.0.json'),
+  ios8: require('./protocols/webkit/iOS-8.0.json'),
+  ios9: require('./protocols/webkit/iOS-9.0.json'),
+  ios93: require('./protocols/webkit/iOS-9.3.json'),
 }
 
 var app = express();
@@ -104,17 +108,29 @@ function getDomains() {
       name: domainName,
       runtimes: [
         {
-          name: 'blink',
+          name: 'Chrome',
           protocol: getDomainForRuntime('blink', domainName),
         },
         {
-          name: 'webkit',
-          protocol: require('./protocols/webkit/' + domainName+ '.json')
+          name: 'Edge',
+          protocol: getDomainForRuntime('edge', domainName)
         },
         {
-          name: 'edge',
-          protocol: getDomainForRuntime('edge', domainName)
-        }        
+          name: 'iOS 9.3',
+          protocol: getDomainForRuntime('ios93', domainName)
+        },
+        {
+          name: 'iOS 9.0',
+          protocol: getDomainForRuntime('ios9', domainName)
+        }, 
+        {
+          name: 'iOS 8.0',
+          protocol: getDomainForRuntime('ios8', domainName)
+        },                               
+        {
+          name: 'iOS 7.0',
+          protocol: getDomainForRuntime('ios7', domainName)
+        },         
       ]      
     } 
   })
