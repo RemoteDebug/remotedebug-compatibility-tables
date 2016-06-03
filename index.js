@@ -103,7 +103,38 @@ function generateCompatibilityPairs(domain, type, propertyKey) {
 } 
 
 function getDomains() {
-  return ['Console', 'CSS', 'Debugger', 'DOM', 'Page'].map(function(domainName) {
+  return [
+    'Inspector',
+    'Memory',
+    'Page',
+    'Rendering',
+    'Emulation',
+    'Runtime',
+    'Console',
+    'Security',
+    'Network',
+    'Database',
+    'IndexedDB',
+    'CacheStorage',
+    'DOMStorage',
+    'ApplicationCache',
+    'DOM',
+    'CSS',
+    'IO',
+    'Debugger',
+    'DOMDebugger',
+    'Profiler',
+    'HeapProfiler',
+    'Worker',
+    'ServiceWorker',
+    'Input',
+    'LayerTree',
+    'DeviceOrientation',
+    'Tracing',
+    'Animation',
+    'Accessibility',
+    'Storage'
+    ].map(function(domainName) {
     return {
       name: domainName,
       runtimes: [
