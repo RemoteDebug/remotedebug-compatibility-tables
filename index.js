@@ -135,7 +135,7 @@ function getDomains() {
     'Animation',
     'Accessibility',
     'Storage'
-    ].map(function(domainName) {
+    ].sort().map(function(domainName) {
     return {
       name: domainName,
       runtimes: [
