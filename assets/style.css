@@ -5,3 +5,28 @@
 .empty {
   background-color: #FFD6D6;
 }
+
+.table {
+  table-layout: fixed;
+  width: 2000px;
+  border: 1px solid #e7e7e7;  
+}
+
+thead,
+.command {
+  background-color: #f8f8f8; 
+}
+
+.command {
+  border-right: 1px solid #e7e7e7;
+}
+
+.page-domain {
+  /*padding: 40px 0; */
+  overflow: auto;
+  width: 100%;
+}
+
+.page-domain h1 { 
+  font-size: 40px;
+}

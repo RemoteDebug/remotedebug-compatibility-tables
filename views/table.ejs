@@ -1,6 +1,7 @@
 <table class="table  table-condensed table-hover">
   <thead>
     <tr>
+      <td></td>   
     <% runtimes.forEach(function(runtime) { %>
       <td><h4><%= runtime.name %></h4></td>      
     <% }) %>
@@ -9,6 +10,7 @@
   <tbody>
     <% items.forEach(function(cPair) { %>
       <tr class="<%= cPair.hasParity ? 'parity' : '' %>">
+      <td class="command"><%= cPair.flat.name %></td>
       <% domain.runtimes.forEach(function(runtime, index) { %>
         <% if(cPair.pair[index]) { %>
           <td><%= cPair.pair[index].name %></td>

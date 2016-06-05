@@ -1,16 +1,22 @@
-<div class="container-fluid">
+<div class="page-domain container-fluid">
+
   <div class="row">
+    <div class="col-md-12">
+      <h1><%= domain.name %></h1>
+      <p><%= domain.description %></p>
+    </div>
+  </div>
+  
+  <div class="row">    
     <div class="col-md-6">
-    
-      <h4><%= domain.name %></h4>
+      <h2></h2>
+      <%- partial('table', { runtimes: domain.runtimes, items: commands}) %>
       
-      <h5>Commands</h5>
-        <%- partial('table', { runtimes: domain.runtimes, items: commands}) %>
-      <h5>Events</h5>
-        <%- partial('table', { runtimes: domain.runtimes, items: events}) %>
-      <h5>Types</h5>
+      <h2>Events</h2>
+      <%- partial('table', { runtimes: domain.runtimes, items: events}) %>
+      
+      <h2>Types</h2>
       <%- partial('table', { runtimes: domain.runtimes, items: types}) %>
-      
     </div>
   </div>
 </div>

@@ -94,7 +94,8 @@ function generateCompatibilityPairs(domain, type, propertyKey) {
     
     commandPairs.push({
       hasParity: hasParity,
-      pair: pair
+      pair: pair,
+      flat: _.compact(pair)[0]
     })
   })
   
