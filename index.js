@@ -58,6 +58,7 @@ app.get('/:domain', function(req, res) {
   res.render('domain', {
       _layoutFile: 'layout',
       domain: domain,
+      info: getDomainInfo(domain.name),
       commands: generateCompatibilityPairs(domain, 'commands', 'name'),
       events: generateCompatibilityPairs(domain, 'events', 'name'),
       types: generateCompatibilityPairs(domain, 'types', 'id')
@@ -147,6 +148,21 @@ function getDomains() {
     
     } 
   })
+}
+
+function getDomainInfo(domainName) {
+  var domain = getDomainByName(domainName);
+
+  var info = {};
+
+  var protocols = domain.runtimes.map(r => r.protocol)
+
+  if(protocols.length) {
+    info.description = protocols[0].description
+    info.isPrivate = protocols[0].hidden
+  }
+
+  return info
 }
 
 function getDomainByName(name) {
