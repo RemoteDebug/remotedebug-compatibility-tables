@@ -1,4 +1,4 @@
-# Compatibility tables for Remote Debugging Protocols
+# RemoteDebug Compatibility Tables
 
 This proejct is about generating Compatibility tables for Remote Debugging Protocols based upon `protocol.json` files from the following runtimes:
 
