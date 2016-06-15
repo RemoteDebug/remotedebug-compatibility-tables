@@ -30,3 +30,9 @@ thead,
 .page-domain h1 { 
   font-size: 40px;
 }
+
+.page-domain .label {
+  font-size: 20px;
+  position: relative;
+  top: -6px;
+}

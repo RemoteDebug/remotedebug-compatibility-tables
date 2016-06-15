@@ -2,7 +2,9 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h1><%= domain.name %></h1>
+      <h1><%= domain.name %> <% if (info.isPrivate) { %> <span class="label label-warning">Private API</span> <% } %></h1>
+
+        
       <p><%- info.description %></p>
     </div>
   </div>
