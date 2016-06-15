@@ -1,15 +1,36 @@
 var express = require('express');
 var _ = require('lodash');
 
-var protocols = {
-  blink: require('./protocols/blink/protocol.json'),
-  edge: require('./protocols/edge/protocol.json'),
-  ios7: require('./protocols/webkit/iOS-7.0.json'),
-  ios8: require('./protocols/webkit/iOS-8.0.json'),
-  ios9: require('./protocols/webkit/iOS-9.0.json'),
-  ios93: require('./protocols/webkit/iOS-9.3.json'),
-  node: require('./protocols/node/protocol.json')
-}
+var runtimes = [
+  {
+    name: 'Chrome',
+    protocol: require('./protocols/blink/protocol.json'),
+  },
+  {
+    name: 'Edge',
+    protocol: require('./protocols/edge/protocol.json'),
+  },
+  {
+    name: 'Node (V8)',
+    protocol: require('./protocols/node/protocol.json')
+  },
+  {
+    name: 'iOS 9.3',
+    protocol: require('./protocols/webkit/iOS-9.3.json'),
+  },
+  {
+    name: 'iOS 9.0',
+    protocol: require('./protocols/webkit/iOS-9.0.json'),
+  }, 
+  {
+    name: 'iOS 8.0',
+    protocol: require('./protocols/webkit/iOS-8.0.json'),
+  },                               
+  {
+    name: 'iOS 7.0',
+    protocol: require('./protocols/webkit/iOS-7.0.json'),
+  },
+]
 
 var app = express();
 app.engine('ejs', require('ejs-locals'));
@@ -105,70 +126,25 @@ function generateCompatibilityPairs(domain, type, propertyKey) {
 } 
 
 function getDomains() {
-  return [
-    'Inspector',
-    'Memory',
-    'Page',
-    'Rendering',
-    'Emulation',
-    'Runtime',
-    'Console',
-    'Security',
-    'Network',
-    'Database',
-    'IndexedDB',
-    'CacheStorage',
-    'DOMStorage',
-    'ApplicationCache',
-    'DOM',
-    'CSS',
-    'IO',
-    'Debugger',
-    'DOMDebugger',
-    'Profiler',
-    'HeapProfiler',
-    'Worker',
-    'ServiceWorker',
-    'Input',
-    'LayerTree',
-    'DeviceOrientation',
-    'Tracing',
-    'Animation',
-    'Accessibility',
-    'Storage'
-    ].sort().map(function(domainName) {
+  // Create unique list of domains
+  var domains = []
+  runtimes.forEach(function(runtime) {
+    var rDomains = runtime.protocol.domains.map(d => d.domain)
+    domains = domains.concat(rDomains)
+  })  
+  domains = _.uniq(domains).sort()
+
+  // Return collection of domains mapped to runtime protocol section
+  return domains.sort().map(function(domainName) {
     return {
       name: domainName,
-      runtimes: [
-        {
-          name: 'Chrome',
-          protocol: getDomainForRuntime('blink', domainName),
-        },
-        {
-          name: 'Edge',
-          protocol: getDomainForRuntime('edge', domainName)
-        },
-        {
-          name: 'Node (V8)',
-          protocol: getDomainForRuntime('node', domainName)
-        },
-        {
-          name: 'iOS 9.3',
-          protocol: getDomainForRuntime('ios93', domainName)
-        },
-        {
-          name: 'iOS 9.0',
-          protocol: getDomainForRuntime('ios9', domainName)
-        }, 
-        {
-          name: 'iOS 8.0',
-          protocol: getDomainForRuntime('ios8', domainName)
-        },                               
-        {
-          name: 'iOS 7.0',
-          protocol: getDomainForRuntime('ios7', domainName)
-        },
-      ]      
+      runtimes: runtimes.map(function(runtime) {
+        return {
+          name: runtime.name,
+          protocol: getDomainForRuntime(runtime.protocol, domainName)
+        }
+      })
+    
     } 
   })
 }
@@ -177,6 +153,6 @@ function getDomainByName(name) {
    return _.find(getDomains(), i => i.name === name)
 }
 
-function getDomainForRuntime(runtime, name) {
-  return _.find(protocols[runtime].domains, item => item.domain === name)
+function getDomainForRuntime(protocol, name) {
+  return _.find(protocol.domains, item => item.domain === name)
 }
