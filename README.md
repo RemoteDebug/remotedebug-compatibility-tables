@@ -7,5 +7,4 @@ This proejct is about generating Compatibility tables for Remote Debugging Proto
 - Safari (WebKit)
 - Node (V8)
 
-
- 
+See [https://compatibility.remotedebug.org](https://compatibility.remotedebug.org )
