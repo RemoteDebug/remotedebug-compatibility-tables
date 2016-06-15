@@ -13,7 +13,7 @@
       <td class="command"><%= cPair.flat.name %></td>
       <% domain.runtimes.forEach(function(runtime, index) { %>
         <% if(cPair.pair[index]) { %>
-          <td><%= cPair.pair[index].name %></td>
+          <td class="<%= cPair.pair[index].object && cPair.pair[index].object.hidden ? 'state-hidden label-warning' : '' %>"><%= cPair.pair[index].name %></td>
         <% } else { %>
           <td class="empty"></td>
         <% } %>    
