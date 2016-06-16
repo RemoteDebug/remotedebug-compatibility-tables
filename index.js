@@ -49,8 +49,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:domain', function(req, res) {
-  
-  var domain = getDomainByName(req.params.domain)  
+  var domain = getDomainInfo(req.params.domain)  
   if(!domain) {
     return res.render('404')
   } 
@@ -58,13 +57,50 @@ app.get('/:domain', function(req, res) {
   res.render('domain', {
       _layoutFile: 'layout',
       domain: domain,
-      info: getDomainInfo(domain.name),
       commands: generateCompatibilityPairs(domain, 'commands', 'name'),
       events: generateCompatibilityPairs(domain, 'events', 'name'),
       types: generateCompatibilityPairs(domain, 'types', 'id')
   })
   
 });
+
+app.get('/:domain/:runtime/:type/:object', function(req, res) {
+  
+  var domain = getDomainInfo(req.params.domain)
+
+  if(!domain) {
+    return res.render('404')
+  } 
+
+  var runtime = getRuntimeByName(req.params.runtime)  
+  if(!runtime) {
+    return res.render('404')
+  } 
+
+  var protocol = _.find(domain.runtimes, i => i.name === req.params.runtime).protocol 
+  if(!protocol) {
+    return res.render('404')
+  } 
+
+  var subProtocol = protocol[req.params.type]  
+  if(!subProtocol) {
+    return res.render('404')
+  } 
+
+  var object = _.find(subProtocol, i => i.name === req.params.object || i.id === req.params.object)
+  if(!object) {
+    return res.render('404')
+  } 
+
+  res.render('object', {
+      _layoutFile: 'layout',
+      domain: domain,
+      runtime: runtime,
+      object: object
+  })
+  
+});
+
 
 app.listen(app.get('port'), function(){
     console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
@@ -153,7 +189,7 @@ function getDomains() {
 function getDomainInfo(domainName) {
   var domain = getDomainByName(domainName);
 
-  var info = {};
+  var info = domain;
 
   var protocols = domain.runtimes.map(r => r.protocol)
 
@@ -167,6 +203,10 @@ function getDomainInfo(domainName) {
 
 function getDomainByName(name) {
    return _.find(getDomains(), i => i.name === name)
+}
+
+function getRuntimeByName(name) {
+   return _.find(runtimes, i => i.name === name)
 }
 
 function getDomainForRuntime(protocol, name) {

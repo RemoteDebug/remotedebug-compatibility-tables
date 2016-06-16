@@ -1,0 +1,19 @@
+<div class="page-domain container-fluid">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= domain.name %> / <%= object.name || object.id %> </h1>
+
+      <p><%- object.description %></p>
+    </div>
+  </div>
+
+<code>
+<pre>
+<%- JSON.stringify(object, true, 2) %>
+</pre>
+</code>
+
+</div>
+
+

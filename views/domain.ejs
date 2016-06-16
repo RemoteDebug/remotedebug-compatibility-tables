@@ -2,23 +2,27 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h1><%= domain.name %> <% if (info.isPrivate) { %> <span class="label label-warning">Private API</span> <% } %></h1>
-
-        
-      <p><%- info.description %></p>
+      <h1><%= domain.name %> <% if (domain.isPrivate) { %> <span class="label label-warning">Private API</span> <% } %></h1>
+      <p><%- domain.description %></p>
     </div>
   </div>
-  
+
+  <div class="info">
+    <span class="label label-warning">Private API</span>
+    <span class="label label-success">Parity</span>
+    <span class="label label-danger">Not implemented</span>
+  </div>
+
   <div class="row">    
     <div class="col-md-6">
       <h2></h2>
-      <%- partial('table', { runtimes: domain.runtimes, items: commands}) %>
+      <%- partial('table', { runtimes: domain.runtimes, items: commands, domain: domain, type: 'commands' }) %>
       
       <h2>Events</h2>
-      <%- partial('table', { runtimes: domain.runtimes, items: events}) %>
+      <%- partial('table', { runtimes: domain.runtimes, items: events, domain: domain, type: 'events'}) %>
       
       <h2>Types</h2>
-      <%- partial('table', { runtimes: domain.runtimes, items: types}) %>
+      <%- partial('table', { runtimes: domain.runtimes, items: types, domain: domain, type: 'types'}) %>
     </div>
   </div>
 </div>

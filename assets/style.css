@@ -1,11 +1,3 @@
-.parity {
-  background-color: rgba(167, 228, 170, 0.29)
-}
-
-.empty {
-  background-color: #FFD6D6;
-}
-
 .table {
   table-layout: fixed;
   width: 2000px;
@@ -35,4 +27,26 @@ thead,
   font-size: 20px;
   position: relative;
   top: -6px;
+}
+
+.page-domain .info {
+  padding: 20px 0;
+  font-size: 12px;
+}
+
+.page-domain .info .label {
+  font-size: 13px;
+}
+
+
+.label-danger {
+  background-color: rgba(217, 83, 79, 0.32);
+}
+
+.label-warning {
+  background-color: rgba(240, 173, 78, 0.62);  
+}
+
+.label-success {
+  background-color: rgba(92, 184, 92, 0.66);  
 }

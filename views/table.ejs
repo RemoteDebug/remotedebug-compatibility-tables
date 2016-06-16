@@ -9,13 +9,17 @@
   </thead>
   <tbody>
     <% items.forEach(function(cPair) { %>
-      <tr class="<%= cPair.hasParity ? 'parity' : '' %>">
+      <tr class="<%= cPair.hasParity ? 'parity label-success' : '' %>">
       <td class="command"><%= cPair.flat.name %></td>
       <% domain.runtimes.forEach(function(runtime, index) { %>
         <% if(cPair.pair[index]) { %>
-          <td class="<%= cPair.pair[index].object && cPair.pair[index].object.hidden ? 'state-hidden label-warning' : '' %>"><%= cPair.pair[index].name %></td>
+          <td class="<%= cPair.pair[index].object && cPair.pair[index].object.hidden ? 'state-hidden label-warning' : '' %>">
+            <a href="<%=domain.name %>/<%=runtime.name %>/<%= type %>/<%= cPair.pair[index].name %>">
+              <%= cPair.pair[index].name %>
+            </a>
+          </td>
         <% } else { %>
-          <td class="empty"></td>
+          <td class="empty label-danger"></td>
         <% } %>    
       <% }) %>    
       </tr>      
