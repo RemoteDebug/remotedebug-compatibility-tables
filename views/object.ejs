@@ -1,5 +1,11 @@
 <div class="page-domain container-fluid">
 
+  <div class="meta" 
+    data-domain="<%= domain.name %>", 
+    data-object="<%= object.name || object.id %>"
+    data-runtime="<%= runtime.name %>"
+  ></div>
+
   <div class="row">
     <div class="col-md-12">
       <h1><%= domain.name %> / <%= object.name || object.id %> </h1>
