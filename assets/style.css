@@ -40,13 +40,16 @@ thead,
 
 
 .label-danger {
-  background-color: rgba(217, 83, 79, 0.32);
+  background-color: #ffecec;
+  color: #bd2c00;
 }
 
 .label-warning {
-  background-color: rgba(240, 173, 78, 0.62);  
+  background-color: #FFE3AA;
+  color:   #AA8439;
 }
 
 .label-success {
-  background-color: rgba(92, 184, 92, 0.66);  
+  background-color: #eaffea;
+  color: #55a532;
 }
