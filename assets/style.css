@@ -1,11 +1,16 @@
 .table {
   width: 2000px;
   border: 1px solid #e7e7e7;  
+  table-layout: fixed;
 }
 
 thead,
 .command {
   background-color: #f8f8f8; 
+}
+
+thead td {
+  width: 200px;
 }
 
 .command {
