@@ -15,6 +15,10 @@ var runtimes = [
     protocol: require('./protocols/node/protocol.json')
   },
   {
+    name: 'Safari iOS 10.0',
+    protocol: require('./protocols/webkit/iOS-10.0.json'),
+  },  
+  {
     name: 'Safari iOS 9.3',
     protocol: require('./protocols/webkit/iOS-9.3.json'),
   },
