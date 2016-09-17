@@ -208,7 +208,7 @@ function getDomainInfo(domainName) {
 
   if(protocols.length) {
     info.description = protocols[0].description
-    info.isPrivate = protocols[0].hidden
+    info.isExperimental = protocols[0].experimental
   }
 
   return info
