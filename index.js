@@ -8,7 +8,7 @@ var runtimes = [
   },
   {
     name: 'Chrome',
-    protocol: require('./protocols/blink/protocol.json'),
+    protocol: require('./protocols/chrome/protocol.json'),
   },
   {
     name: 'Edge',
