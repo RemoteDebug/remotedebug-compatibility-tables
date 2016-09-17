@@ -3,6 +3,10 @@ var _ = require('lodash');
 
 var runtimes = [
   {
+    name: 'RemoteDebug Core',
+    protocol: require('./protocols/core/protocol.json'),
+  },
+  {
     name: 'Chrome',
     protocol: require('./protocols/blink/protocol.json'),
   },
