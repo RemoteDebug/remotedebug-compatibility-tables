@@ -57,3 +57,7 @@ thead td {
   background-color: #eaffea;
   color: #55a532;
 }
+
+.page-index-list td {
+    width: 100px;
+}

@@ -2,11 +2,39 @@
   <div class="row">
     <div class="col-md-4">
     <h4>Protocol domains</h4>
-      <ul class="list-group">
+      <table class="table page-index-list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Runtimes</th>
+          <% for (i=0; i < runtimes.length - 1; i++) { %>
+            <th></th>
+          <% } %>
+        </tr>
+      </thead>
       <% domains.forEach(function(domain) { %>
-        <li class="list-group-item"><a href="/<%= domain.name %>"><%= domain.name %></a></li>
+        <tr>
+          <td>
+            <a href="/<%= domain.name %>"><%= domain.name %></a>
+          </td>
+          <td>
+            <% if (domain.isPrivate) { %> 
+              <span class="label label-warning">Private API</span>
+            <% } %>
+          </td>
+          <% if (domain.runtimes) { %> 
+            <% domain.runtimes.forEach(function(runtime) { %>
+              <% if (runtime.protocol) { %> 
+                <td class="runtime"><%= runtime.name %></td>
+              <% } else { %>
+                <td class="runtime"></td>
+              <% } %>
+            <% }) %>
+          <% } %>
+        </tr>
       <% }) %>
-      </ul>
+      </table>
     </div>
   </div>
 </div>

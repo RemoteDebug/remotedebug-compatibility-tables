@@ -50,9 +50,15 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function(req, res) {
+  
+  var domains = getDomains().map(d => {
+    return getDomainInfo(d.name)
+  })
+
   res.render('index', {
       _layoutFile: 'layout',
-      domains: getDomains()
+      domains: domains,
+      runtimes: runtimes
   })
 });
 
