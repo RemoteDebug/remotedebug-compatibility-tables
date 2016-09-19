@@ -183,10 +183,10 @@ function getDomains() {
     var rDomains = runtime.protocol.domains.map(d => d.domain)
     domains = domains.concat(rDomains)
   })  
-  domains = _.uniq(domains).sort()
+  domains = _.uniq(domains)
 
   // Return collection of domains mapped to runtime protocol section
-  return domains.sort().map(function(domainName) {
+  return domains.map(function(domainName) {
     return {
       name: domainName,
       runtimes: runtimes.map(function(runtime) {
@@ -196,7 +196,9 @@ function getDomains() {
         }
       })
     
-    } 
+    }
+  }).sort((a, b) => {
+    return a.name.localeCompare(b.name);
   })
 }
 
