@@ -8,12 +8,12 @@
     </tr>
   </thead>
   <tbody>
-    <% items.forEach(function(cPair) { %>
-      <tr class="<%= cPair.hasParity ? 'parity label-success' : '' %>">
+    <% items.forEach(function(cPair, index) { %>
+      <tr class="<%= cPair.isPartOfCore ? 'parity label-success' : '' %>">
       <td class="command"><%= cPair.flat.name %></td>
       <% domain.runtimes.forEach(function(runtime, index) { %>
         <% if(cPair.pair[index]) { %>
-          <td class="<%= cPair.pair[index].object && cPair.pair[index].object.hidden ? 'state-hidden label-warning' : '' %>">
+          <td class="<%= cPair.pair[index].object && cPair.pair[index].object.experimental ? 'state-hidden label-warning' : '' %>">
             <a href="<%=domain.name %>/<%=runtime.name %>/<%= type %>/<%= cPair.pair[index].name %>">
               <%= cPair.pair[index].name %>
             </a>

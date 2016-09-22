@@ -120,6 +120,10 @@ app.listen(app.get('port'), function(){
     console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
 });
 
+function isPartOfCore(commands) {
+  return commands[0].runtime == 'RemoteDebug Core';
+}
+
 function generateCompatibilityPairs(domain, type, propertyKey) {
   var runtimes = domain.runtimes  
   var runtimesCount = runtimes.length
@@ -161,12 +165,9 @@ function generateCompatibilityPairs(domain, type, propertyKey) {
         object: item.command
       }
     })
-    
-    var namePairs = pair.map(i => i ? i[propertyKey] : null)
-    var hasParity = namePairs.every(i => i === namePairs[0])
-    
+        
     commandPairs.push({
-      hasParity: hasParity,
+      isPartOfCore: isPartOfCore(command, propertyKey),
       pair: pair,
       flat: _.compact(pair)[0]
     })
