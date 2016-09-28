@@ -7,7 +7,7 @@ var runtimes = [
     protocol: require('./protocols/core/protocol.json'),
   },
   {
-    name: 'Chrome',
+    name: 'Chrome (CDP 1.2)',
     protocol: require('./protocols/chrome/protocol.json'),
   },
   {
