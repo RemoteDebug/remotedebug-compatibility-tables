@@ -1,7 +1,8 @@
 .table {
-  width: 2000px;
   border: 1px solid #e7e7e7;  
   table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
 }
 
 thead,
@@ -9,7 +10,8 @@ thead,
   background-color: #f8f8f8; 
 }
 
-thead td {
+.table thead th,
+.table thead td {
   width: 250px;
 }
 
