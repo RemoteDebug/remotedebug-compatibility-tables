@@ -1,5 +1,6 @@
 var express = require('express')
 var _ = require('lodash')
+var serveStatic = require('serve-static')
 
 var defaultFilter = {
   runtimes: ['RemoteDebug Core', 'Chrome (CDP 1.2)', 'Edge', 'Node (V8)', 'Safari iOS 10.0']
@@ -55,7 +56,7 @@ app.set('port', process.env.PORT || 8080)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 
-app.use(express.static(__dirname + '/assets'))
+app.use(serveStatic(__dirname + '/assets'))
 
 var handleFilters = function (req, res, next) {
   req.filter = Object.assign({}, defaultFilter)
