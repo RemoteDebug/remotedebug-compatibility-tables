@@ -8,15 +8,17 @@
           <th>Name</th>
           <th>Status</th>
           <th>Runtimes</th>
-          <% for (i=0; i < runtimes.length - 1; i++) { %>
-            <th></th>
+          <% for (i=1; i < runtimes.length - 1; i++) { %>
+            <% if(filter.runtimes.includes(runtimes[i].name)) { %> 
+              <th></th>
+            <% } %>
           <% } %>
         </tr>
       </thead>
       <% domains.forEach(function(domain) { %>
         <tr>
           <td>
-            <a href="/<%= domain.name %>"><%= domain.name %></a>
+            <a href="/<%= domain.name %><% if(!filter.isDefault) {%>?runtimes=<%=filter.runtimes.join(',')%> <% } %>"><%= domain.name %></a>
           </td>
           <td>
             <% if (domain.isExperimental) { %> 
@@ -25,11 +27,13 @@
           </td>
           <% if (domain.runtimes) { %> 
             <% domain.runtimes.forEach(function(runtime) { %>
-              <% if (runtime.protocol) { %> 
-                <td class="runtime"><%= runtime.name %></td>
-              <% } else { %>
-                <td class="runtime"></td>
-              <% } %>
+                <% if(filter.runtimes.includes(runtime.name)) { %> 
+                  <% if (runtime.protocol) { %> 
+                    <td class="runtime"><%= runtime.name %></td>
+                  <% } else { %>
+                    <td class="runtime"></td>
+                  <% } %>
+                <% } %>
             <% }) %>
           <% } %>
         </tr>
@@ -37,6 +41,6 @@
       </table>
     </div>
   </div>
-</div>
 
+</div>
 

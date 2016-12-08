@@ -3,7 +3,9 @@
     <tr>
       <td></td>   
     <% runtimes.forEach(function(runtime) { %>
-      <td><h4><%= runtime.name %></h4></td>      
+      <% if(filter.runtimes.includes(runtime.name)) { %> 
+        <td><h4><%= runtime.name %></h4></td>
+      <% } %>
     <% }) %>
     </tr>
   </thead>
@@ -12,14 +14,16 @@
       <tr class="<%= cPair.isPartOfCore ? 'parity label-success' : '' %>">
       <td class="command"><%= cPair.flat.name %></td>
       <% domain.runtimes.forEach(function(runtime, index) { %>
-        <% if(cPair.pair[index]) { %>
-          <td class="<%= cPair.pair[index].object && (cPair.pair[index].object.experimental || cPair.pair[index].object.hidden) ? 'state-hidden label-warning' : '' %>">
-            <a href="<%=domain.name %>/<%=runtime.name %>/<%= type %>/<%= cPair.pair[index].name %>">
-              <%= cPair.pair[index].name %>
-            </a>
-          </td>
-        <% } else { %>
-          <td class="empty label-danger"></td>
+        <% if(filter.runtimes.includes(runtime.name)) { %> 
+          <% if(cPair.pair[index]) { %>
+            <td class="<%= cPair.pair[index].object && (cPair.pair[index].object.experimental || cPair.pair[index].object.hidden) ? 'state-hidden label-warning' : '' %>">
+              <a href="<%=domain.name %>/<%=runtime.name %>/<%= type %>/<%= cPair.pair[index].name %>">
+                <%= cPair.pair[index].name %>
+              </a>
+            </td>
+          <% } else { %>
+            <td class="empty label-danger"></td>
+          <% } %>    
         <% } %>    
       <% }) %>    
       </tr>      

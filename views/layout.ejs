@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="/prism.css">
         <link rel="stylesheet" href="/prism-ref-linker.css">
 
-        <script src="/prism.js"></script>        
-        <script src="/prism-ref-linker.js"></script>        
+        <script src="/prism.js"></script>
+        <script src="/prism-ref-linker.js"></script>
     </head>
 
     <body>
@@ -24,6 +24,9 @@
               <p>RemoteDebug Protocol Compatibility Tables</p>
             </a>
           </div>
+          <% if( typeof runtimes !== 'undefined') { %>
+            <%- partial('runtimes', { runtimes: runtimes }) %>
+          <% } %>
         </div>
       </nav>
     
