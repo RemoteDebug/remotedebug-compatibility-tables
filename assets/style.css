@@ -74,3 +74,7 @@ thead,
 .page-index-list td {
     width: 100px;
 }
+
+.runtime img {
+  width: 24px;
+}

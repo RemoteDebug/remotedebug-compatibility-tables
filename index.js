@@ -9,49 +9,58 @@ var defaultFilter = {
 var runtimes = [
   {
     name: 'RemoteDebug Core',
-    protocol: require('./protocols/core/protocol.json')
+    protocol: require('./protocols/core/protocol.json'),
+    icon: 'RemoteDebug.png'
   },
   {
     name: 'Chrome (CDP 1.2)',
-    protocol: require('./protocols/chrome/protocol.json')
+    protocol: require('./protocols/chrome/protocol.json'),
+    icon: 'chrome.svg'
   },
   {
     name: 'Chrome (CDP 1.1)',
-    protocol: require('./protocols/chrome/protocol_11.json')
+    protocol: require('./protocols/chrome/protocol_11.json'),
+    icon: 'chrome.svg'
   },
   {
     name: 'Edge',
-    protocol: require('./protocols/edge/protocol.json')
+    protocol: require('./protocols/edge/protocol.json'),
+    icon: 'edge.svg'
   },
   {
     name: 'Node (V8)',
-    protocol: require('./protocols/node/protocol.json')
+    protocol: require('./protocols/node/protocol.json'),
+    icon: 'nodejs.svg'
   },
   {
     name: 'Safari iOS 10.0',
-    protocol: require('./protocols/webkit/iOS-10.0.json')
+    protocol: require('./protocols/webkit/iOS-10.0.json'),
+    icon: 'safari-ios.svg'
   },
   {
     name: 'Safari iOS 9.3',
-    protocol: require('./protocols/webkit/iOS-9.3.json')
+    protocol: require('./protocols/webkit/iOS-9.3.json'),
+    icon: 'safari-ios.svg'
   },
   {
     name: 'Safari iOS 9.0',
-    protocol: require('./protocols/webkit/iOS-9.0.json')
+    protocol: require('./protocols/webkit/iOS-9.0.json'),
+    icon: 'safari-ios.svg'
   },
   {
     name: 'Safari iOS 8.0',
-    protocol: require('./protocols/webkit/iOS-8.0.json')
+    protocol: require('./protocols/webkit/iOS-8.0.json'),
+    icon: 'safari-ios.svg'
   },
   {
     name: 'Safari iOS 7.0',
-    protocol: require('./protocols/webkit/iOS-7.0.json')
+    protocol: require('./protocols/webkit/iOS-7.0.json'),
+    icon: 'safari-ios.svg'
   }
 ]
 
 var app = express()
 app.engine('ejs', require('ejs-locals'))
-
 app.set('port', process.env.PORT || 8080)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
@@ -214,6 +223,7 @@ function getDomains () {
       runtimes: runtimes.map(function (runtime) {
         return {
           name: runtime.name,
+          icon: runtime.icon,
           protocol: getDomainForRuntime(runtime.protocol, domainName)
         }
       })
