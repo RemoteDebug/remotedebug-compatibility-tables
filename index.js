@@ -228,7 +228,7 @@ function getDomainInfo (domainName) {
   var domain = getDomainByName(domainName)
 
   var info = domain || {}
-  var protocols = domain.runtimes.length ? _.compact(domain.runtimes.map(r => r.protocol)) : []
+  var protocols = domain && domain.runtimes && domain.runtimes.length ? _.compact(domain.runtimes.map(r => r.protocol)) : []
 
   if (protocols.length) {
     info.description = protocols[0].description
