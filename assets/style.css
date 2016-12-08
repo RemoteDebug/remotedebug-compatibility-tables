@@ -1,3 +1,13 @@
+body {
+  overflow: hidden;
+}
+
+.content {
+  width: 100vw;
+  height: calc(100vh - 75px);
+  overflow: scroll;
+}
+
 .table {
   border: 1px solid #e7e7e7;  
   table-layout: fixed;
