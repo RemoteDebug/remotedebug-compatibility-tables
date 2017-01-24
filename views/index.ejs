@@ -31,7 +31,7 @@
             <% domain.runtimes.forEach(function(runtime) { %>
                 <% if(filter.runtimes.includes(runtime.name)) { %> 
                   <% if (runtime.protocol) { %> 
-                    <img src="<%= runtime.icon %>" />
+                    <img src="<%= runtime.icon %>" title="<%= runtime.name %>"/>
                   <% } %>
                 <% } %>
             <% }) %>
