@@ -1,18 +1,28 @@
-
-<div class="row">
-  <div class="col-md-4">
-    <h4>Runtimes</h4>
-    <% for (i=0; i < runtimes.length - 1; i++) { %>
-      <% var isEnabled = filter.runtimes.includes(runtimes[i].name) %>
-      <p><input type="checkbox" <%= isEnabled ? 'checked' : '' %> data-name="<%= runtimes[i].name %>" data-index="<%= i %>" /> <%= runtimes[i].name %></p>
-    <% } %>
-  </div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+    <li class="dropdown js-runtime-filtering">
+      <a href="#" class="dropdown-toggle"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Runtimes <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <% for (var i=0; i < runtimes.length - 1; i++) { %>
+        <% var isEnabled = filter.runtimes.includes(runtimes[i].name) %>
+        <li>
+          <a href="#">
+            <input type="checkbox" <%= isEnabled ? 'checked' : '' %> data-name="<%= runtimes[i].name %>" data-index="<%= i %>" id="runtime-filter-<%= runtimes[i].name %>"/>
+            <label for="runtime-filter-<%= runtimes[i].name %>"><%= runtimes[i].name %></label>
+          </a>
+        </li>
+        <% } %>
+      </ul>
+    </li>
+  </ul>
 </div>
 
 <script>
+  var filteringEl = document.querySelector('.js-runtime-filtering')
+
   function updateUrl() {
     var state = []
-    document.querySelectorAll('input[type=checkbox]').forEach(function(elmBox) {
+    filteringEl.querySelectorAll('input[type=checkbox]').forEach(function(elmBox) {
       if(elmBox.checked) {
         state.push(elmBox.attributes['data-name'].value.trim())
       }
@@ -22,9 +32,13 @@
     location.href = newUrl
   }
 
-  document.querySelectorAll('input[type=checkbox]').forEach(function(elmBox) {
+  filteringEl.querySelectorAll('input[type=checkbox]').forEach(function(elmBox) {
     elmBox.addEventListener('change', function() {
       updateUrl();
     })
+  })
+
+  filteringEl.querySelector('.dropdown-toggle').addEventListener('click', function() {
+    filteringEl.classList.toggle('open');
   })
 </script>
