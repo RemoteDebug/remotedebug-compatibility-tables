@@ -82,9 +82,7 @@ var handleFilters = function (req, res, next) {
 }
 
 app.get('/', handleFilters, function (req, res) {
-  var domains = getDomains().map(d => {
-    return getDomainInfo(d.name)
-  })
+  var domains = getDomains().map(d => getDomainInfo(d.name))
 
   res.render('index', {
     _layoutFile: 'layout',
@@ -156,8 +154,8 @@ function isPartOfCore (commands) {
 }
 
 function generateCompatibilityPairs (domain, type, propertyKey) {
-  var runtimes = domain.runtimes
-  var runtimesCount = runtimes.length
+  var runtimes = domain.runtimes || []
+  var runtimesCount = runtimes ? runtimes.length : 0
 
   var commands = new Map()
 
