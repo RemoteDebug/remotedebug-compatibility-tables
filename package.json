@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "standard index.js",
     "start": "node index.js"
   },
   "author": "Kenneth Auchenberg <kenneth@auchenberg.dk>",
@@ -14,5 +14,8 @@
     "express": "^4.13.4",
     "lodash": "^4.12.0",
     "serve-static": "^1.11.1"
+  },
+  "devDependencies": {
+    "standard": "^8.6.0"
   }
 }

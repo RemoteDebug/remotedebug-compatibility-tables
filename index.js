@@ -1,6 +1,7 @@
 var express = require('express')
 var _ = require('lodash')
 var serveStatic = require('serve-static')
+var path = require('path')
 
 var defaultFilter = {
   runtimes: ['RemoteDebug Core', 'Chrome (CDP 1.2)', 'Edge', 'Node (V8)', 'Safari iOS 10.0']
@@ -10,7 +11,7 @@ var runtimes = [
   {
     name: 'RemoteDebug Core',
     protocol: require('./protocols/core/protocol.json'),
-    icon: 'RemoteDebug.png'
+    icon: 'remotedebug.png'
   },
   {
     name: 'Chrome (CDP 1.2)',
@@ -62,10 +63,10 @@ var runtimes = [
 var app = express()
 app.engine('ejs', require('ejs-locals'))
 app.set('port', process.env.PORT || 8080)
-app.set('views', __dirname + '/views')
+app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'ejs')
 
-app.use(serveStatic(__dirname + '/assets'))
+app.use(serveStatic(path.join(__dirname, '/assets')))
 
 var handleFilters = function (req, res, next) {
   req.filter = Object.assign({}, defaultFilter)
@@ -81,9 +82,7 @@ var handleFilters = function (req, res, next) {
 }
 
 app.get('/', handleFilters, function (req, res) {
-  var domains = getDomains().map(d => {
-    return getDomainInfo(d.name)
-  })
+  var domains = getDomains().map(d => getDomainInfo(d.name))
 
   res.render('index', {
     _layoutFile: 'layout',
@@ -151,12 +150,12 @@ app.listen(app.get('port'), function () {
 })
 
 function isPartOfCore (commands) {
-  return commands[0].runtime == 'RemoteDebug Core'
+  return commands[0].runtime === 'RemoteDebug Core'
 }
 
 function generateCompatibilityPairs (domain, type, propertyKey) {
-  var runtimes = domain.runtimes
-  var runtimesCount = runtimes.length
+  var runtimes = domain.runtimes || []
+  var runtimesCount = runtimes ? runtimes.length : 0
 
   var commands = new Map()
 
