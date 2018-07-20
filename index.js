@@ -9,11 +9,6 @@ var defaultFilter = {
 
 var runtimes = [
   {
-    name: 'RemoteDebug Core',
-    protocol: require('./protocols/core/protocol.json'),
-    icon: 'remotedebug.png'
-  },
-  {
     name: 'Chrome (CDP 1.2)',
     protocol: require('./protocols/chrome/protocol.json'),
     icon: 'chrome.svg'
