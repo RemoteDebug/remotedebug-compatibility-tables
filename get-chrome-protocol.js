@@ -7,13 +7,13 @@ var fetchChromeProtocol = () => {
 
   return new Promise((resolve, reject) => {
     var protocol = {
-      version: { 'major': '1', 'minor': '2' },
+      version: { 'major': '1', 'minor': '3' },
       domains: []
     }
 
     var urls = [
-      'https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/inspector/browser_protocol.json?format=TEXT',
-      'https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json?format=TEXT'
+      'https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/public/devtools_protocol/browser_protocol-1.3.json?format=TEXT',
+      'https://chromium.googlesource.com/v8/v8/+/master/include/js_protocol-1.3.json?format=TEXT'
     ]
 
     var fetchedProtocols = urls.map(url => {
@@ -35,7 +35,7 @@ var fetchChromeProtocol = () => {
 }
 
 fetchChromeProtocol().then(protocol => {
-  fs.writeFile('protocols/chrome/protocol.json', JSON.stringify(protocol, null, 2), function (err) {
+  fs.writeFile('protocols/chrome/protocol_13.json', JSON.stringify(protocol, null, 2), function (err) {
     if (err) {
       console.log(err)
     } else {
