@@ -5,7 +5,7 @@ var request = require('request-promise')
 
 var fetchProtocol = () => {
   return new Promise((resolve, reject) => {
-    var url = 'https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json?format=TEXT'
+    var url = 'https://chromium.googlesource.com/v8/v8/+/master/include/js_protocol-1.3.json?format=TEXT'
     return request(url).then(body => {
       var protocol = JSON.parse(Buffer.from(body, 'base64').toString('utf8'))
       resolve(protocol)
@@ -14,7 +14,8 @@ var fetchProtocol = () => {
 }
 
 fetchProtocol().then(protocol => {
-  fs.writeFile('protocols/node/protocol.json', JSON.stringify(protocol, null, 2), function (err) {
+  const { version: { major, minor } } = protocol;
+  fs.writeFile(`protocols/node/protocol_${major}${minor}.json`, JSON.stringify(protocol, null, 2), function (err) {
     if (err) {
       console.log(err)
     } else {
