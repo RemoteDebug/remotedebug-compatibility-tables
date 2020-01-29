@@ -2,9 +2,8 @@
 
 This project is about generating compatibility tables for Remote Debugging Protocols based upon `protocol.json` files from the following runtimes:
 
-- Chromium (Blink) 
-- Microsoft Edge (EdgeHTML, via Edge Diagnostics Adapter)
-- Mozilla Firefox (
+- Chrome (Blink)
+- Edge (via Edge Diagnostics Adapter)
 - Safari (WebKit)
 - Node (V8)
 
