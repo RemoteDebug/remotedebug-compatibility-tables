@@ -4,7 +4,7 @@ var serveStatic = require('serve-static')
 var path = require('path')
 
 var defaultFilter = {
-  runtimes: ['Chrome (CDP 1.3)', 'Edge 0.1', 'Edge 0.2 (preview)', 'Firefox (CDP 1.3)', 'Node (CDP 1.3)', 'Safari iOS 10.0']
+  runtimes: ['Chrome (CDP 1.3)', 'Edge 0.1', 'Edge 0.2 (preview)', 'Node (CDP 1.3)', 'Safari iOS 10.0']
 }
 
 var runtimes = [
@@ -32,11 +32,6 @@ var runtimes = [
     name: 'Edge 0.2 (preview)',
     protocol: require('./protocols/edge/protocol.02.json'),
     icon: 'edge.svg'
-  },
-  {
-    name: 'Firefox (CDP 1.3)',
-    protocol: require('./protocols/firefox/protocol_13.json'),
-    icon: 'firefox.svg'
   },
   {
     name: 'Node (CDP 1.3)',
